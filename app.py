@@ -1,18 +1,18 @@
-from flask import Flask
-from flask import render_template
+# app.py
+from flask import Flask, render_template, request
 
-#建立Flask類別的實體(instance)
 app = Flask(__name__)
 
-# 配對網址和執行的函數
-@app.route("/page")
-def home():
-    lst = [
-          {"name":"aaa","age":99},
-          {"name":"bbb","age":88},
-          {"name":"ccc","age":77},
-    ]
-    return render_template("index.html", name=lst)
-    
-if __name__ == "__main__":
-	app.run(debug=True)
+@app.route('/')
+def index():
+    # 假設我們從資料夾渲染 index.html
+    return render_template('index.html')
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    # 這裡處理表單提交的邏輯
+    username = request.form.get('username') # 讀取HTTP request
+    return f"感謝註冊，{username}！"
+
+if __name__ == '__main__':
+    app.run(debug=True)

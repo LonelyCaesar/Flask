@@ -1,12 +1,18 @@
 {% extends "base.html" %}
 
-{% block title %} 首頁 {% endblock %}
-
-{% block styles %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
-{% endblock %}
+{# 匯入 macros.html 並命名為 m #}
+{% import "macros.html" as m %}
 
 {% block content %}
-    <h1>hello</h1>
-    <p>這是從 base.html 繼承過來的頁面內容。</p>
+    <h1>歡迎來到註冊頁面</h1>
+    
+    <form action="/submit" method="POST">
+        {# 使用我們定義的 input Macro #}
+        {{ m.input('username', label='使用者名稱', placeholder='請輸入帳號') }}
+        {{ m.input('email', label='電子郵件', type='email', placeholder='example@mail.com') }}
+        {{ m.input('password', label='密碼', type='password') }}
+        
+        {# 使用我們定義的 button Macro #}
+        {{ m.button('送出註冊') }}
+    </form>
 {% endblock %}
