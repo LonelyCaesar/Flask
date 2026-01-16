@@ -5,9 +5,14 @@ from flask import render_template
 app = Flask(__name__)
 
 # 配對網址和執行的函數
-@app.route("/page/<name>")
-def home(name):
-    return render_template("index.html", name=name)
+@app.route("/page")
+def home():
+    lst = [
+          {"name":"aaa","age":99},
+          {"name":"bbb","age":88},
+          {"name":"ccc","age":77},
+    ]
+    return render_template("index.html", name=lst)
     
 if __name__ == "__main__":
 	app.run(debug=True)
