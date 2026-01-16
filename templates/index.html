@@ -1,9 +1,12 @@
-{% block title%} 首頁 {%  endblock%}
+{% extends "base.html" %}
 
-{% block styles%}
-<link>
+{% block title %} 首頁 {% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 {% endblock %}
 
 {% block content %}
     <h1>hello</h1>
+    <p>這是從 base.html 繼承過來的頁面內容。</p>
 {% endblock %}
